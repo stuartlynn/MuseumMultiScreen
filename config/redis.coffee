@@ -3,7 +3,7 @@ redis  = require('redis')
 client =redis.createClient()
 
 client.on 'error', (error)->
-  console.log error
+  console.log "REDIS ERRPR #{error}"
 
 
 exports.client = client

@@ -1,4 +1,6 @@
 express = require('express')
+Resource = require('express-resource')
+
 app = express.createServer()
 app.use(express.bodyParser())
 app.use(express.logger())
@@ -13,19 +15,10 @@ app.use(express.static("./public"))
 
 redisClient  = require('./config/redis').client
 
-app.get '/solarsystem/:id', (req,res)->
-  redisClient.set 'solarsystem_ids', req.params.id
-  res.send('Hello World '+ req.params.id);
 
-app.post '/solarsystem/', (req, res)->
-  console.log("creating new solar system")
+# Rest Api endpoints for solar systems 
 
-app.post '/solarsystem/:id', (req,res)->
-  comsole.log("updating solar system")
-
-app.get '/solarsystem/', (req,res)->
-  redisClient.get 'solarsystem_ids', (err, result)=>
-    res.send('the last set was '+result)
+app.resource 'solarsystems', require('./controllers/SolarSystemController')(redisClient)
 
 app.listen(3000)
 console.log "server started on 3000"

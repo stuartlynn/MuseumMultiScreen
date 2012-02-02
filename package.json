@@ -13,7 +13,9 @@
     "spine": "latest",
     "coffee-script": "latest",
     "express": "latest",
+    "express-resource" : "latest",
     "redis" : "latest",
-    "hiredis" : "latest"
+    "hiredis" : "latest",
+    "socket.io" : "latest"
   }
 }
