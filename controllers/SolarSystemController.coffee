@@ -1,16 +1,20 @@
 module.exports = (redisClient)->
   routes =
+    
     show : (req,res)->
-      redisClient.set 'solarsystem_ids', req.params.id
-      res.send('Hello World '+ req.params.id);
+      redisClient.set 'solarsystem_ids', req.params.solarsystem
+      res.send('Hello World '+ req.params.solarsystem);
+    
     create : (req, res)->
+      console.log ("solar system create")
       solarsystem = req.body
-      console.log solarsystem
       solarsystem.id= 10
-      console.log solarsystem
       res.send solarsystem
+    
     update : (req,res)->
-      comsole.log("updating solar system")
+      console.log ("solar system update")
+
     index : (req,res)->
+      console.log ("solar system index")
       redisClient.get 'solarsystem_ids', (err, result)=>
         res.send('the last set was '+result)
