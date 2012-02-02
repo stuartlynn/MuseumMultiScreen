@@ -36,9 +36,14 @@ module.exports = (options)->
         callback(s)
 
     redisAll : (callback)->
+      self = @
       Redis.keys "#{name}_*", (err, results)->
-        ids= (result.replace(name_reg,"") for result in results)
-        callback(ids)
-    
+        ids = (result.replace(name_reg,"") for result in results)
+        records=[]
+        for id in ids 
+          self.redisFind id, (result)->
+            records.push result
+            callback(records) if records.length == ids.length
+
     redisCount: (callback)->
       callback(10)

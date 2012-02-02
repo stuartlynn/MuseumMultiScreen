@@ -8,5 +8,5 @@ class SolarSystem extends Spine.Model
   whomademe:->
     @creator
 
-        
+
 module.exports = SolarSystem
