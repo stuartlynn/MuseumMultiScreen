@@ -1,20 +1,23 @@
+SolarSystem = require("../app/models/solarsystem")
+
 module.exports = (redisClient)->
+
+  SolarSystem = require("../lib/redisify")({redis:redisClient, model:SolarSystem})
+
   routes =
-    
     show : (req,res)->
-      redisClient.set 'solarsystem_ids', req.params.solarsystem
-      res.send('Hello World '+ req.params.solarsystem);
+      SolarSystem.redisFind req.params.solarsystem, (solar)->
+        res.send solar.toJSON()
     
     create : (req, res)->
       console.log ("solar system create")
-      solarsystem = req.body
-      solarsystem.id= 10
+      solarsystem = new SolarSystem(req.body)
+      solarsystem.redisSave()
       res.send solarsystem
     
     update : (req,res)->
       console.log ("solar system update")
 
     index : (req,res)->
-      console.log ("solar system index")
-      redisClient.get 'solarsystem_ids', (err, result)=>
-        res.send('the last set was '+result)
+      SolarSystem.redisAll (result)->
+        res.send(result)

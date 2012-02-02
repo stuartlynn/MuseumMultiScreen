@@ -1,4 +1,5 @@
 Spine = require('spine')
+require('spine/lib/ajax')
 
 class SolarSystem extends Spine.Model
   @configure 'SolarSystem', 'creator', 'planets', 'star'
