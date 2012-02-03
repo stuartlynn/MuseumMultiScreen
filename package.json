@@ -16,6 +16,7 @@
     "express-resource" : "latest",
     "redis" : "latest",
     "hiredis" : "latest",
-    "socket.io" : "latest"
+    "socket.io" : "latest",
+    "d3" : "latest"
   }
 }

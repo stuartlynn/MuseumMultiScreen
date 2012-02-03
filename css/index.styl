@@ -1,1 +1,32 @@
 @import './mixin'
+
+body 
+  background-color : black
+  width : 100%
+  height : 100%
+  min-width : 1024px 
+  min-height : 768px
+
+.adlerLogo
+  position: absolute 
+  top:20px
+  right: 20px
+
+/* STAR FIELD*/
+
+.background{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index:-100000;
+}
+
+.background.middle{
+  background: transparent url('images/stars.png') repeat scroll -50px -50px;
+}
+
+.background.front{
+  background: transparent url('images/stars.png') repeat scroll -75px 125px;
+}

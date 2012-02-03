@@ -7,11 +7,9 @@ module.exports = (options)->
 
   model.include
     redisUpdate:->
-      console.log("redis update #{name}_#{@id} ", JSON.stringify(@toJSON()))
       Redis.set "#{name}_#{@id}", JSON.stringify(@toJSON())
 
     redisSave:->
-      console.log("redis save")
       self = @
       Redis.get "#{name}_#{@id}" , (err,result) ->
         if result 
@@ -20,14 +18,13 @@ module.exports = (options)->
           self.redisCreate()
     
     redisCreate:->
-      console.log("redis create")
       self = @
       Redis.incr "id_counter_#{name}", (err,results)->
         self.id = results
         self.redisUpdate()
 
     redisDelete:->
-      console.log("redis delete")
+      Redis.del "#{name}_#{@id}"
 
   model.extend
     redisFind : (id,callback)->
