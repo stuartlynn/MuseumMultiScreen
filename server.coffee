@@ -1,6 +1,7 @@
 express = require('express')
 Resource = require('express-resource')
 
+
 app = express.createServer()
 app.use(express.bodyParser())
 app.use(express.logger())
@@ -17,8 +18,13 @@ redisClient  = require('./config/redis').client
 
 
 # Rest Api endpoints for solar systems 
+console.log "setting up web server"
 
 app.resource 'solarsystems', require('./controllers/SolarSystemController')(redisClient)
-
 app.listen(3000)
+
+# Set up websockets 
+console.log "setting up webscokets"
+require("./controllers/SolarSystemLiveController")(redisClient)
+
 console.log "server started on 3000"

@@ -1,0 +1,5 @@
+<h1> Welcome to the Adler Solar system maker</h1>
+
+<p> Here you can make your own solar system! Will it have one sun or two? Rocy planets or gas giants?</p>
+
+<img id='beginButton' src='images/beginButton.png'></img>
